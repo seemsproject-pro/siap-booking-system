@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SIAP &bull; Portal Booking Jadwal Ujian PMB Online - STIKOM El Rahma</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap');
+
+    :root {
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --primary-light: #eff6ff;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --gray-50: #f8fafc;
+      --gray-100: #f1f5f9;
+      --gray-200: #e2e8f0;
+      --gray-600: #475569;
+      --gray-800: #1e293b;
+      --gray-900: #0f172a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    }
+
+    body {
+      background: #f4f6fb;
+      color: var(--gray-800);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* TOP NAVBAR (SIAP STIKOM EL RAHMA) */
+    .navbar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--gray-200);
+      height: 64px;
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .siap-logo {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+    }
+
+    .brand-title {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title strong {
+      font-size: 16px;
+      color: var(--gray-900);
+      letter-spacing: -0.2px;
+    }
+
+    .brand-title span {
+      font-size: 11px;
+      color: var(--gray-600);
+    }
+
+    .nav-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .badge-user {
+      background: var(--primary-light);
+      border: 1px solid #bfdbfe;
+      color: #1e40af;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1280px;
+      margin: 28px auto;
+      padding: 0 24px;
+      flex: 1;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* HERO BANNER */
+    .hero-card {
+      background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+      border-radius: 16px;
+      padding: 28px 32px;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 10px 25px rgba(37, 99, 235, 0.2);
+    }
+
+    .hero-text h2 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .hero-text p {
+      font-size: 13.5px;
+      color: #bfdbfe;
+      max-width: 760px;
+      line-height: 1.5;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 20px;
+    }
+
+    .stat-pill {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 12px 20px;
+      text-align: center;
+    }
+
+    .stat-pill .num {
+      font-size: 22px;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .stat-pill .lbl {
+      font-size: 11px;
+      color: #dbeafe;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    /* GRID LAYOUT FOR FORM + STATUS */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 24px;
+      align-items: flex-start;
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--gray-200);
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+      padding: 24px;
+    }
+
+    .card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* FORM STYLES */
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--gray-800);
+      margin-bottom: 5px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 13px;
+      border: 1.5px solid var(--gray-200);
+      border-radius: 8px;
+      outline: none;
+      transition: all 0.2s;
+      background: #ffffff;
+    }
+
+    .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .btn-primary {
+      width: 100%;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 13.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s;
+      box-shadow: 0 4px 10px rgba(37, 99, 235, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+
+    /* TABLE */
+    .table-responsive {
+      overflow-x: auto;
+      border-radius: 10px;
+      border: 1px solid var(--gray-200);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 12.5px;
+    }
+
+    th {
+      background: var(--gray-100);
+      padding: 12px 14px;
+      font-weight: 700;
+      color: var(--gray-600);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--gray-100);
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 20px;
+      font-size: 10.5px;
+      font-weight: 700;
+    }
+
+    .status-confirmed { background: #dcfce7; color: #15803d; }
+    .status-rescheduled { background: #e0f2fe; color: #0369a1; }
+    .status-cancelled { background: #fee2e2; color: #b91c1c; }
+
+    .btn-action {
+      padding: 5px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: 1px solid var(--gray-200);
+      background: #ffffff;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-action:hover {
+      background: var(--gray-100);
+      border-color: var(--gray-300);
+    }
+
+    .btn-danger {
+      color: var(--danger);
+      border-color: #fecaca;
+    }
+
+    .btn-danger:hover {
+      background: #fee2e2;
+    }
+
+    /* NOTIFICATION TOAST */
+    .toast-box {
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 14px;
+      display: none;
+    }
+
+    .toast-success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+    .toast-error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+    /* FOOTER */
+    footer {
+      background: #ffffff;
+      border-top: 1px solid var(--gray-200);
+      padding: 16px 32px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--gray-600);
+      margin-top: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP HEADER -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <div class="siap-logo">SIAP</div>
+      <div class="brand-title">
+        <strong>SIAP &bull; Sistem Informasi Penerimaan Mahasiswa Online</strong>
+        <span>STIKOM El Rahma Bogor &bull; Portal Booking Ujian Masuk</span>
+      </div>
+    </div>
+    <div class="nav-meta">
+      <div class="badge-user">
+        <span>👨‍💻 M. Syams Dzulqarnain</span>
+        <span>(NIM: 2411070084 - Informatika 7)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTENT -->
+  <main class="container">
+
+    <!-- HERO BANNER -->
+    <section class="hero-card">
+      <div class="hero-text">
+        <h2>Pemesanan &amp; Penjadwalan Seleksi Masuk Online</h2>
+        <p>
+          Selamat datang di modul demonstrasi interaktif <strong>SIAP Booking System</strong> (Tugas 8 RPL). Sistem ini menerapkan kaidah <em>Coding Standard</em> modular, validasi <em>fail-safely</em> (pencegahan double booking &amp; kuota penuh), dan pencatatan audit log terstruktur.
+        </p>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-pill">
+          <div class="num" id="statCandidates">3</div>
+          <div class="lbl">Kandidat Terdaftar</div>
+        </div>
+        <div class="stat-pill">
+          <div class="num" id="statBookings">3</div>
+          <div class="lbl">Tiket Booking</div>
+        </div>
+        <div class="stat-pill">
+          <div class="num" id="statQuota">18/20</div>
+          <div class="lbl">Sisa Kuota Sesi</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN TWO-COLUMN WORKSPACE -->
+    <div class="main-grid">
+
+      <!-- LEFT COLUMN: BOOKING FORM -->
+      <section class="card">
+        <div class="card-title">
+          <span>📝</span> Formulir Booking Jadwal Seleksi
+        </div>
+
+        <div id="toastBox" class="toast-box"></div>
+
+        <form id="bookingForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label>NIK Calon Mahasiswa (16 Digit)</label>
+            <input type="text" id="inputNik" class="form-control" placeholder="Contoh: 3201012304950005" maxlength="16" required>
+          </div>
+
+          <div class="form-group">
+            <label>Nama Lengkap</label>
+            <input type="text" id="inputName" class="form-control" placeholder="Nama sesuai KTP/Ijazah" required>
+          </div>
+
+          <div class="form-group">
+            <label>Alamat Email Aktif</label>
+            <input type="email" id="inputEmail" class="form-control" placeholder="nama@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label>Nomor WhatsApp Aktif</label>
+            <input type="text" id="inputPhone" class="form-control" placeholder="0812xxxxxxxx" required>
+          </div>
+
+          <div class="form-group">
+            <label>Pilihan Program Studi</label>
+            <select id="selectProdi" class="form-control">
+              <option value="Teknik Informatika (S1)">Teknik Informatika (S1)</option>
+              <option value="Sistem Informasi (S1)">Sistem Informasi (S1)</option>
+              <option value="Manajemen Informatika (D3)">Manajemen Informatika (D3)</option>
+              <option value="Komputerisasi Akuntansi (D3)">Komputerisasi Akuntansi (D3)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Tanggal Ujian Masuk</label>
+            <input type="date" id="inputDate" class="form-control" value="2026-11-20" required>
+          </div>
+
+          <div class="form-group">
+            <label>Pilihan Sesi Ujian</label>
+            <select id="selectSession" class="form-control">
+              <option value="Pagi (08:30 - 11:30 WIB)">Pagi (08:30 - 11:30 WIB)</option>
+              <option value="Siang (13:00 - 16:00 WIB)">Siang (13:00 - 16:00 WIB)</option>
+            </select>
+          </div>
+
+          <button type="submit" class="btn-primary">
+            <span>🎫</span> Terbitkan Tiket Booking Seleksi
+          </button>
+        </form>
+      </section>
+
+      <!-- RIGHT COLUMN: ACTIVE BOOKINGS AUDIT TABLE -->
+      <section class="card">
+        <div class="card-title" style="justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span>📋</span> Daftar Tiket Booking Terverifikasi
+          </div>
+          <span style="font-size: 11px; font-weight: normal; color: var(--gray-600);">Auto-Sync Repository In-Memory</span>
+        </div>
+
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Kode Booking</th>
+                <th>Kandidat</th>
+                <th>Program Studi</th>
+                <th>Jadwal Ujian</th>
+                <th>Status</th>
+                <th>Aksi</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+        </div>
+
+        <div style="margin-top: 18px; padding: 12px 16px; background: var(--gray-50); border: 1px dashed var(--gray-200); border-radius: 8px; font-size: 11.5px; color: var(--gray-600); line-height: 1.5;">
+          <strong>🛡️ Proteksi Integritas Data (Coding Standard):</strong><br>
+          &bull; Sistem membatasi kuota maksimal 20 calon mahasiswa per sesi.<br>
+          &bull; Mencegah pemesanan ganda (*Double Booking*) untuk NIK atau kandidat yang sama.<br>
+          &bull; Riwayat pemindahan jadwal (*Reschedule History*) tercatat secara permanen di database.
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      Tugas 8 RPL: <strong style="color: var(--gray-900);">Coding Standard &amp; Version Control</strong> &bull; Dosen: <strong style="color: var(--gray-900);">Bpk. Ferry Noorman, S.Kom., M.Kom.</strong>
+    </div>
+    <div>
+      Repositori: <a href="https://github.com/seemsproject-pro/siap-booking-system" target="_blank" style="color: var(--primary); font-weight: 700; text-decoration: none;">github.com/seemsproject-pro/siap-booking-system</a>
+    </div>
+  </footer>
+
+  <script>
+    // State lokal data untuk interaktivitas simulasi
+    let candidateCounter = 1003;
+    let bookingCounter = 5003;
+
+    let candidates = [
+      { id: 'PMB-2026-1001', nik: '3201012304950001', name: 'M. Syams Dzulqarnain', email: 'syamsdzq@gmail.com', phone: '081234567890', prodi: 'Teknik Informatika (S1)' },
+      { id: 'PMB-2026-1002', nik: '3271011508010002', name: 'Ahmad Fauzi', email: 'ahmad.fauzi@gmail.com', phone: '085712345678', prodi: 'Sistem Informasi (S1)' },
+      { id: 'PMB-2026-1003', nik: '3202021006000003', name: 'Siti Nurhaliza', email: 'siti.nurhaliza@gmail.com', phone: '087898765432', prodi: 'Manajemen Informatika (D3)' }
+    ];
+
+    let bookings = [
+      { code: 'BKG-2026-5001', candidateId: 'PMB-2026-1001', date: '2026-11-20', slot: 'Pagi (08:30 - 11:30 WIB)', status: 'CONFIRMED' },
+      { code: 'BKG-2026-5002', candidateId: 'PMB-2026-1002', date: '2026-11-25', slot: 'Siang (13:00 - 16:00 WIB)', status: 'RESCHEDULED' },
+      { code: 'BKG-2026-5003', candidateId: 'PMB-2026-1003', date: '2026-11-21', slot: 'Siang (13:00 - 16:00 WIB)', status: 'CANCELLED' }
+    ];
+
+    function showToast(msg, isSuccess = true) {
+      const toast = document.getElementById('toastBox');
+      toast.innerText = msg;
+      toast.className = 'toast-box ' + (isSuccess ? 'toast-success' : 'toast-error');
+      toast.style.display = 'block';
+      setTimeout(() => { toast.style.display = 'none'; }, 4000);
+    }
+
+    function renderTable() {
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+
+      bookings.forEach(b => {
+        const cand = candidates.find(c => c.id === b.candidateId);
+        const tr = document.createElement('tr');
+
+        let statusClass = 'status-confirmed';
+        if (b.status === 'RESCHEDULED') statusClass = 'status-rescheduled';
+        if (b.status === 'CANCELLED') statusClass = 'status-cancelled';
+
+        tr.innerHTML = `
+          <td><strong style="font-family: monospace; color: #2563eb;">${b.code}</strong></td>
+          <td>
+            <strong>${cand ? cand.name : 'Unknown'}</strong><br>
+            <span style="font-size: 11px; color: #64748b;">${b.candidateId}</span>
+          </td>
+          <td>${cand ? cand.prodi : '-'}</td>
+          <td>
+            <strong>${b.date}</strong><br>
+            <span style="font-size: 11px; color: #64748b;">${b.slot.split(' ')[0]}</span>
+          </td>
+          <td><span class="status-badge ${statusClass}">${b.status}</span></td>
+          <td>
+            ${b.status !== 'CANCELLED' ? `
+              <button class="btn-action" onclick="reschedule('${b.code}')">Ubah</button>
+              <button class="btn-action btn-danger" onclick="cancel('${b.code}')">Batal</button>
+            ` : '<span style="font-size: 11px; color: #94a3b8;">Tidak aktif</span>'}
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      document.getElementById('statCandidates').innerText = candidates.length;
+      document.getElementById('statBookings').innerText = bookings.filter(b => b.status !== 'CANCELLED').length;
+      const bookedPagi = bookings.filter(b => b.date === '2026-11-20' && b.slot.includes('Pagi') && b.status !== 'CANCELLED').length;
+      document.getElementById('statQuota').innerText = `${20 - bookedPagi}/20`;
+    }
+
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const nik = document.getElementById('inputNik').value.trim();
+      const name = document.getElementById('inputName').value.trim();
+      const email = document.getElementById('inputEmail').value.trim();
+      const phone = document.getElementById('inputPhone').value.trim();
+      const prodi = document.getElementById('selectProdi').value;
+      const date = document.getElementById('inputDate').value;
+      const slot = document.getElementById('selectSession').value;
+
+      // Validasi NIK 16 digit
+      if (!/^[0-9]{16}$/.test(nik)) {
+        showToast('Validasi Gagal: NIK wajib terdiri dari 16 digit angka.', false);
+        return;
+      }
+
+      // Cek duplikasi NIK
+      if (candidates.some(c => c.nik === nik)) {
+        showToast('Conflict Error: NIK sudah terdaftar sebelumnya!', false);
+        return;
+      }
+
+      candidateCounter++;
+      bookingCounter++;
+
+      const newCandId = 'PMB-2026-' + candidateCounter;
+      const newBookCode = 'BKG-2026-' + bookingCounter;
+
+      candidates.push({ id: newCandId, nik, name, email, phone, prodi });
+      bookings.unshift({ code: newBookCode, candidateId: newCandId, date, slot, status: 'CONFIRMED' });
+
+      showToast(`Sukses! Tiket ${newBookCode} berhasil diterbitkan untuk ${name}.`, true);
+      document.getElementById('bookingForm').reset();
+      renderTable();
+    }
+
+    function cancel(code) {
+      const b = bookings.find(item => item.code === code);
+      if (b && confirm(`Batalkan jadwal booking tiket ${code}?`)) {
+        b.status = 'CANCELLED';
+        showToast(`Tiket ${code} telah dibatalkan.`, true);
+        renderTable();
+      }
+    }
+
+    function reschedule(code) {
+      const newDate = prompt(`Masukkan tanggal baru (YYYY-MM-DD):`, '2026-11-28');
+      if (newDate) {
+        const b = bookings.find(item => item.code === code);
+        if (b) {
+          b.date = newDate;
+          b.status = 'RESCHEDULED';
+          showToast(`Jadwal tiket ${code} berhasil dipindahkan ke ${newDate}.`, true);
+          renderTable();
+        }
+      }
+    }
+
+    // Inisialisasi awal
+    renderTable();
+  </script>
+</body>
+</html>
